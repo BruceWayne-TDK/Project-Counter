@@ -1,0 +1,33 @@
+#root { 
+background-color:rgb(112, 242, 112);
+width:160px;
+border-radius: 20px;
+border: 3px solid rgb(45, 61, 13);
+
+left: 50px;
+margin-top: 20px;
+}
+
+div { position: relative;
+        left: 55px;   
+    }
+
+h1 { 
+    position: relative;
+    left: 15px;
+}
+
+button { height: 35px;
+    width: 35px;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: 4px;
+    font-size: 15px;
+    background-color: rgb(79, 124, 84);
+    color: white
+
+}
+
+.reset { 
+    width: 60px;
+}
