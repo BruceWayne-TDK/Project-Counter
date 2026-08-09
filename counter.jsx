@@ -1,36 +1,49 @@
 import { useState } from "react";
-import './counter.css';
 
+function AllInOne() { 
 
-function Counter() { 
+          const [cars,setCars] = useState([]);
+          const [carName, setCarName] = useState("");
+           const [carModel, setCarModel] = useState("");
+            const [carYear, setCarYear] = useState(new Date().getFullYear());
 
-    let [num, setNum] = useState(0);
+     function handleAddCar(){
+               const newCar = {year: carYear , model: carModel , name: carName};
+               setCars(c => [...c , newCar]);
 
-    const IncNum = () => { 
+          setCarModel("");
+          setCarName("");
+          setCarYear(new Date().getFullYear());
+          
 
-        setNum(num + 1);
-    }
+           }
 
-    const DecNum = () => { 
+     function handleRemoveCar(index){ 
+          setCars(c => c.filter((_,i) => i !== index));
+     }
 
-        setNum(num - 1);
-    }
+     function handleYearChange(event){
+          setCarYear(event.target.value);
+     }
 
-    const ResetNum = () => { 
+     function handleNameChange(event){
+          setCarName(event.target.value);
+     }
 
-        setNum(0);
-    }
+     function handleModelChange(event){
+          setCarModel(event.target.value);
+     }
 
-
-return( <> 
-        <div> 
-        <h1> {num} </h1>
-        </div>
-            <button className="up" onClick={IncNum}> + </button> 
-            <button className="reset" onClick={ResetNum}> Reset </button>
-             <button className="down" onClick={DecNum}> - </button>
-         </>)
-
+     return(<>   <ul> 
+               {cars.map((car,index) => 
+            <li key={index} onClick={() => handleRemoveCar(index)}>{car.year} {car.model} {car.name}</li> )}
+                </ul>
+     <input type="text" value={carModel} onChange={handleModelChange} placeholder="Enter Model"/> 
+     <input type="text" value={carName} onChange={handleNameChange} placeholder="Enter Name"/> 
+     <input type="number" value={carYear} onChange={handleYearChange} placeholder="Enter Year"/>
+     <button onClick={handleAddCar}> ADD </button> 
+                 
+               </> )
+                 
 }
-
-export default Counter
+export default AllInOne
